@@ -1,0 +1,64 @@
+<!doctype html>
+<html>
+<head>
+<title>All student Records</title>
+
+<link href="{{ url_for('static', filename='reset.css') }}" rel="stylesheet" type="text/css">
+<link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet" type="text/css">
+
+<link href='http://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
+</head>
+
+<body>
+<header>
+  <div class="container">
+	<h1>Students records in DB:</h1>
+  </div>
+</header>
+
+<main>
+  <div class="container">
+	<table >
+		<tr >
+			<th style="width:7%">StudentId</th>
+			<th>First Name</th>
+			<th>Last name</th>
+			<th>email</th>
+			<th>Course</th>
+		</tr>
+
+		<!-- students is a list of lists. So, use nested loop to process
+			the lists and each element within each list -->
+
+		<!-- *** I. You are to write the nested loop to process the
+			the list of lists, and display them in a table format:
+			one row per list. Use the "<tr> ...  </tr>" tag pair to enclose a row,
+			and use a html tag pair of <td> ... </td>	to enclose each cell in a row.
+			Each cell should display an element within a list. Here is a reference
+			to learn loop syntax: http://jinja.pocoo.org/docs/2.9/templates/
+		-->
+
+      {% for record in totalRecords %} <!--I.-->
+  			<tr>
+          {% for item in record %}
+          <td>{{item}}</td>
+          {% endfor %}
+        </tr>
+  		{% endfor %}
+
+
+	</table>
+  </div>
+</main>
+
+<footer>
+  <div class="container">
+	<a href= "/" >Home</a>
+  </div>
+</footer>
+
+<script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+
+</body>
+</html>
