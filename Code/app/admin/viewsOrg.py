@@ -1,4 +1,4 @@
-# views 2 change Event to Events
+# Original working views file for dummy table
 from flask import abort, flash, redirect, render_template, url_for
 from flask_login import current_user, login_required
 
@@ -24,7 +24,7 @@ def list_events():
     """
     check_admin()
 
-    events = Events.query.all()
+    events = Event.query.all()
 
     return render_template('admin/events/events.html',
                            events=events, title="Events")
@@ -41,7 +41,7 @@ def add_event():
 
     form = EventForm()
     if form.validate_on_submit():
-        event = Events(name=form.name.data,
+        event = Event(name=form.name.data,
                                 description=form.description.data)
         try:
             # add event to the database
@@ -70,7 +70,7 @@ def edit_event(id):
 
     add_event = False
 
-    event = Events.query.get_or_404(id)
+    event = Event.query.get_or_404(id)
     form = EventForm(obj=event)
     if form.validate_on_submit():
         event.name = form.name.data
@@ -95,7 +95,7 @@ def delete_event(id):
     """
     check_admin()
 
-    event = Events.query.get_or_404(id)
+    event = Event.query.get_or_404(id)
     db.session.delete(event)
     db.session.commit()
     flash('You have successfully deleted the event.')

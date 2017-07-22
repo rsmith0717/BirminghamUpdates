@@ -1,5 +1,6 @@
 # Do these things before trying to run the program
 # import the sql file to give yourself a database to work with
+# mysql -u <user> -p<password> <dbname> < file.sql
 # export FLASK_CONFIG=development
 # export FLASK_APP=run.py
 # flask run

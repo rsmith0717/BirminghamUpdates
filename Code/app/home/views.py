@@ -4,6 +4,8 @@ from flask import abort, render_template
 from flask_login import current_user, login_required
 
 from . import home
+from ..models import *
+
 
 @home.route('/')
 def homepage():
@@ -11,6 +13,16 @@ def homepage():
     Render the homepage template on the / route
     """
     return render_template('home/index.html', title="Welcome")
+
+@home.route('/all-events')
+def allevents():
+    """
+    Render the events on the / route all-events
+    """
+    events = Events.query.all()
+
+    return render_template('home/all-events.html',
+                           events=events, title="Events")
 
 @home.route('/dashboard')
 @login_required
