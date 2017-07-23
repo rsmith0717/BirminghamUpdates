@@ -15,6 +15,7 @@ body {
 body, html {
     width: 100%;
     height: 100%;
+    margin-bottom: 120px;
 }
 
 body, h1, h2, h3 {
@@ -68,6 +69,8 @@ p.copyright {
 .content-section {
     padding: 50px 0;
     border-top: 1px solid #e7e7e7;
+    overflow: auto;
+    margin: 0 auto 100px auto;
 }
 
 .footer, .push {
@@ -142,3 +145,11 @@ p.copyright {
 .dashboard {
     background-image: url('../img/city.jpg');
  }
+
+ table {
+     margin-bottom: 20px;
+ }
+
+.buttonholder {
+    text-align: center;
+}

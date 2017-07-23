@@ -17,14 +17,17 @@ def check_admin():
 # Event Views
 
 @admin.route('/events', methods=['GET', 'POST'])
+@admin.route('/events/<int:page>', methods=['GET', 'POST'])
 @login_required
-def list_events():
+def list_events(page=1):
     """
     List all events
     """
     check_admin()
 
-    events = Events.query.all()
+    #events = Events.query.all()
+    POSTS_PER_PAGE = 20
+    events = Events.query.paginate(page, POSTS_PER_PAGE, False)
 
     return render_template('admin/events/events.html',
                            events=events, title="Events")

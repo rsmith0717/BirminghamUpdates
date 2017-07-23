@@ -15,11 +15,17 @@ def homepage():
     return render_template('home/index.html', title="Welcome")
 
 @home.route('/all-events')
-def allevents():
+@home.route('/all-events/<int:page>', methods=['GET', 'POST'])
+
+def allevents(page=1):
     """
     Render the events on the / route all-events
     """
-    events = Events.query.all()
+    #events = Events.query.all()
+    POSTS_PER_PAGE = 20
+    events = Events.query.paginate(page, POSTS_PER_PAGE, False)
+
+
 
     return render_template('home/all-events.html',
                            events=events, title="Events")
