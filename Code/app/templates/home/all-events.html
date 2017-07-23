@@ -38,9 +38,9 @@
                         </tbody>
                     </table>
                     <div class="buttonholder">
-                        {% if events.has_prev %} <a href="{{ url_for('home.allevents', page=events.prev_num) }}">&lt;&lt; Prev events</a>{%
-                        else %}&lt;&lt; Prev events{% endif %} | {% if events.has_next %}<a href="{{ url_for('home.allevents', page=events.next_num) }}">Next events &gt;&gt;</a>{%
-                        else %}Next events &gt;&gt;{% endif %}
+                        {% if events.has_prev %} <a href="{{ url_for('home.allevents', page=events.prev_num) }}">&lt;&lt; Prev Page</a>{%
+                        else %}&lt;&lt; Prev Page{% endif %} | {% if events.has_next %}<a href="{{ url_for('home.allevents', page=events.next_num) }}">Next Page &gt;&gt;</a>{%
+                        else %}Next Page &gt;&gt;{% endif %}
                         <br />
                         <br />
                         <br />
