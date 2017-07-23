@@ -30,6 +30,18 @@ def allevents(page=1):
     return render_template('home/all-events.html',
                            events=events, title="Events")
 
+@home.route('/events/view/<int:id>', methods=['GET', 'POST'])
+def view_event(id):
+    """
+    Edit a event
+    """
+    add_event = False
+
+    event = Events.query.get_or_404(id)
+
+    return render_template('home/view-event.html', action="Edit",
+                           add_event=add_event, event=event, title="View Event")
+
 @home.route('/dashboard')
 @login_required
 def dashboard():

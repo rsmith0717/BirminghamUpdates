@@ -1,0 +1,16 @@
+ {% import "bootstrap/wtf.html" as wtf %} {% extends "base.html" %} {% block title %} {% endblock %} {% block body %}
+<div class="content-section">
+    <div class="outer">
+        <div class="middle">
+            <div class="inner">
+                <div class="center">
+                    <h1 style="text-align:center;"> {{ event.name }} </h1>
+                    <p>
+                        The event is at: {{ event.description }} <br /> The event starts at: {{ event.startTime }} <br />                        The event ends at: {{ event.endTime }} <br />
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -79,6 +79,11 @@ class Events(db.Model):
     description = db.Column('Street Address', db.String(200))
     startTime = db.Column('Start time', db.String(200))
     endTime = db.Column('End Time', db.String(200))
+    latitude = db.Column('Latitude', db.String(200))
+    longitude = db.Column('Longitude', db.String(200))
+
+
+    
     #users = db.relationship('User', backref='events',
                                 #lazy='dynamic')
 

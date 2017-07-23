@@ -51,7 +51,6 @@
             {% if events.has_prev %} <a href="{{ url_for('admin.list_events', page=events.prev_num) }}">&lt;&lt; Prev events</a>{%
             else %}&lt;&lt; Prev events{% endif %} | {% if events.has_next %}<a href="{{ url_for('admin.list_events', page=events.next_num) }}">Next events &gt;&gt;</a>{%
             else %}Next events &gt;&gt;{% endif %}
-
             <div style="text-align: center">
               {% else %}
               <div style="text-align: center">
