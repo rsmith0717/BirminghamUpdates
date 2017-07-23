@@ -1,11 +1,19 @@
-from flask import render_template
-from flask_login import login_required
-from flask import abort, render_template
+from flask import abort, flash, redirect, render_template, url_for
 from flask_login import current_user, login_required
 
 from . import home
+from .forms import EventForm
 from ..models import *
 
+
+def check_creator(id):
+    """
+    Prevent non-admins from accessing the page
+    """
+    if current_user.id == id:
+        return True
+    else:
+        return False
 
 @home.route('/')
 def homepage():
@@ -38,9 +46,42 @@ def view_event(id):
     add_event = False
 
     event = Events.query.get_or_404(id)
+    creator_id = event.usersID
+    creator = False
+    if hasattr(current_user, 'id'):
+        creator = check_creator(creator_id)
+        print(creator)
 
-    return render_template('home/view-event.html', action="Edit",
-                           add_event=add_event, event=event, title="View Event")
+
+    return render_template('home/view-event.html',
+                           add_event=add_event, event=event, action='Edit', title="View Event", creator=creator)
+
+@home.route('/events/edit/<int:id>', methods=['GET', 'POST'])
+def edit_event(id):
+    add_event = False
+
+    event = Events.query.get_or_404(id)
+    creator_id = event.usersID
+    creator = check_creator(creator_id)
+    form = EventForm(obj=event)
+    if form.validate_on_submit():
+        event.name = form.name.data
+        event.description = form.description.data
+        event.startTime = form.startTime.data
+        event.endTime = form.endTime.data
+        event.longitude = form.longitude.data
+        event.latitude = form.latitude.data
+        db.session.commit()
+        flash('You have successfully edited the event.')
+
+        # redirect to the departments page
+        return redirect(url_for('home.view_event', id=event.id))
+
+    form.description.data = event.description
+    form.name.data = event.name
+    return render_template('home/edit-event.html', action="Edit",
+                           add_event=add_event, form=form,
+                           event=event, title="Edit Event",creator=creator)
 
 @home.route('/dashboard')
 @login_required

@@ -75,6 +75,7 @@ class Events(db.Model):
     __tablename__ = 'table 5'
 
     id = db.Column('event_id', db.Integer, primary_key=True)
+    usersID = db.Column('users_id', db.Integer)
     name = db.Column('Event', db.String(100), unique=False)
     description = db.Column('Street Address', db.String(200))
     startTime = db.Column('Start time', db.String(200))
