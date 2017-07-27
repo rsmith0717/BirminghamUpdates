@@ -6,11 +6,13 @@
                 <div class="center">
                     <h1 style="text-align:center;"> {{ event.name }} </h1>
                     <p>
-                        The event is at: {{ event.description }} <br /> The event starts at: {{ event.startTime }} <br />                       
-                        The event ends at: {{ event.endTime }} <br /> {% if creator %}
+                        The event is at: {{ event.description }} <br /> The event starts at: {{ event.startTime }} <br />                        The event ends at: {{ event.endTime }} <br /> {% if creator %}
                         <a class="btn btn-large btn-info" href="{{ url_for('home.edit_event', id=event.id) }}"> 
-                                    <i class="icon-info-sign"></i> Edit My Event</a> </a> {% else %} {% endif %}
+                                    <i class="icon-info-sign"></i> Edit My Event</a> </a> {% else
+                        %} {% endif %}
                     </p>
+                    <h2> Google Map </h2>
+                            {{googlemap("my_awesome_map", lat=event.latitude, lng=event.longitude, markers=[(event.longitude, event.latitude)])}}
                 </div>
             </div>
         </div>

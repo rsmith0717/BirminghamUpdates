@@ -1,5 +1,7 @@
 from flask import abort, flash, redirect, render_template, url_for
 from flask_login import current_user, login_required
+from flask_googlemaps import GoogleMaps
+from flask_googlemaps import Map
 
 from . import home
 from .forms import EventForm
@@ -41,20 +43,38 @@ def allevents(page=1):
 @home.route('/events/view/<int:id>', methods=['GET', 'POST'])
 def view_event(id):
     """
-    Edit a event
+    View a event
     """
     add_event = False
 
     event = Events.query.get_or_404(id)
     creator_id = event.usersID
     creator = False
+    # creating a map in the view
+    latitude = event.latitude
+    lng = event.longitude
+
+    """mymap = Map(
+        #identifier="view-side",
+        #latitude = event.latitude,
+        lng = event.longitude,
+        markers = [(latitude,lng)]
+    )
+    """
+    mymap = Map(
+        identifier="view-side",
+        lat=37.4419,
+        lng=-122.1419,
+        markers=[(37.4419, -122.1419)]
+    )
+
     if hasattr(current_user, 'id'):
         creator = check_creator(creator_id)
         print(creator)
 
 
     return render_template('home/view-event.html',
-                           add_event=add_event, event=event, action='Edit', title="View Event", creator=creator)
+                           add_event=add_event, event=event, action='Edit', title="View Event", creator=creator)#mymap=mymap
 
 @home.route('/events/edit/<int:id>', methods=['GET', 'POST'])
 def edit_event(id):

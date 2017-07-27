@@ -7,6 +7,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 from flask_migrate import Migrate
 from flask_googlemaps import GoogleMaps
+from flask_googlemaps import Map
 import pymysql
 pymysql.install_as_MySQLdb()
 
@@ -21,7 +22,7 @@ def create_app(config_name):
     app = Flask(__name__, instance_relative_config=True)
     app.config.from_object(app_config[config_name])
     app.config.from_pyfile('config.py')
-    app.config['GOOGLEMAPS_KEY'] = "8JZ7i18MjFuM35dJHq70n3Hx4"
+    app.config['GOOGLEMAPS_KEY'] = "AIzaSyDwtj6w0ghdk0un6lxhzsB3DmatH_hIYhc"
     db.init_app(app)
     
     login_manager.init_app(app)
@@ -29,7 +30,7 @@ def create_app(config_name):
     login_manager.login_view = "auth.login"
 
     migrate = Migrate(app, db)
-    
+
     GoogleMaps(app)
     Bootstrap(app)
 
