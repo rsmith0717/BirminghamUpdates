@@ -5,6 +5,7 @@ from flask_googlemaps import Map
 
 from . import home
 from .forms import EventForm
+from .. import db
 from ..models import *
 
 
@@ -102,6 +103,32 @@ def edit_event(id):
     return render_template('home/edit-event.html', action="Edit",
                            add_event=add_event, form=form,
                            event=event, title="Edit Event",creator=creator)
+
+
+@home.route('/events/add', methods=['GET', 'POST'])
+@login_required
+def createevent():
+    add_event = True
+    form = EventForm()
+    if form.validate_on_submit():
+        event = Events(name=form.name.data,description=form.description.data, startTime = form.startTime.data, endTime = form.endTime.data,
+        longitude = form.longitude.data, latitude = form.latitude.data, usersID=current_user.id)
+        try:
+            # add event to the database
+            db.session.add(event)
+            db.session.commit()
+            flash('You have successfully added a new event.')
+        except:
+            # in case event name already exists
+            flash('Error: event name already exists.')
+
+        # redirect to event page
+        return redirect(url_for('home.allevents'))
+
+    return render_template('home/edit-event.html', action="Add",
+                           add_event=add_event, form=form,
+                           title="Add Event")
+
 
 @home.route('/dashboard')
 @login_required
