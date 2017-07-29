@@ -40,7 +40,8 @@ footer {
 
 p.copyright {
     margin: 15px 0 0;
-    color: white;
+    color: black;
+    text-align: center;
 }
 
 .alert-info {
@@ -144,6 +145,7 @@ p.copyright {
 
 .dashboard {
     background-image: url('../img/city.jpg');
+    margin: -20px;
  }
 
  table {
