@@ -1,58 +1,54 @@
  {% import "bootstrap/utils.html" as utils %} {% extends "base.html" %} {% block title %}events{% endblock %} {% block body
 %}
 <div class="content-section">
-    <div class="outer">
-        <div class="middle">
-            <div class="inner">
-                <br/> {{ utils.flashed_messages() }}
-                <br/>
-                <h1 style="text-align:center;">Events</h1>
-                {% if events %}
-                <hr class="intro-divider">
-                <div class="center">
-                    <table class="table table-striped table-bordered">
-                        <thead>
-                            <tr>
-                                <th width="15%"> Name </th>
-                                <th width="30%"> Location </th>
-                                <th width="20%"> Start Time </th>
-                                <th width="20%"> End Time </th>
-                                <th width="15%"> User Count </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for event in events.items %}
-                            <tr>
-                                <td style="text-align:center;"> {{ event.name }} </td>
-                                <td style="text-align:center;"> {{ event.description }} </td>
-                                <td style="text-align:center;"> {{ event.startTime }} </td>
-                                <td style="text-align:center;"> {{ event.endTime }} </td>
-                                <td style="text-align:center;">
-                                    {% if event.users %} {{ event.users.count() }} {% else %} 0 {% endif %}
-                                </td>
-                                <td> <a class="btn btn-large btn-info" href="{{ url_for('home.view_event', id=event.id) }}"> 
+    <div class="inner">
+        <br/> {{ utils.flashed_messages() }}
+        <br/>
+        <h1 style="text-align:center;">Events</h1>
+        {% if events %}
+        <hr class="intro-divider">
+        <div class="center">
+            <table class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th width="15%"> Name </th>
+                        <th width="30%"> Location </th>
+                        <th width="20%"> Start Time </th>
+                        <th width="20%"> End Time </th>
+                        <th width="15%"> User Count </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for event in events.items %}
+                    <tr>
+                        <td style="text-align:center;"> {{ event.name }} </td>
+                        <td style="text-align:center;"> {{ event.description }} </td>
+                        <td style="text-align:center;"> {{ event.startTime }} </td>
+                        <td style="text-align:center;"> {{ event.endTime }} </td>
+                        <td style="text-align:center;">
+                            {% if event.users %} {{ event.users.count() }} {% else %} 0 {% endif %}
+                        </td>
+                        <td> <a class="btn btn-large btn-info" href="{{ url_for('home.view_event', id=event.id) }}"> 
                                     <i class="icon-info-sign"></i> View</a> </a>
-                                </td>
-                            </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                    <div class="buttonholder">
-                        {% if events.has_prev %} <a href="{{ url_for('home.allevents', page=events.prev_num) }}">&lt;&lt; Prev Page</a>{%
-                        else %}&lt;&lt; Prev Page{% endif %} | {% if events.has_next %}<a href="{{ url_for('home.allevents', page=events.next_num) }}">Next Page &gt;&gt;</a>{%
-                        else %}Next Page &gt;&gt;{% endif %}
-                        <br />
-                        <br />
-                        <br />
-                    </div>
-                </div>
-                <div style="text-align: center">
-                    {% else %}
-                    <div style="text-align: center">
-                        <h3> No events have been added. </h3>
-                        <hr class="intro-divider"> {% endif %}
-                    </div>
-                </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <div class="buttonholder">
+                {% if events.has_prev %} <a href="{{ url_for('home.allevents', page=events.prev_num) }}">&lt;&lt; Prev Page</a>{%
+                else %}&lt;&lt; Prev Page{% endif %} | {% if events.has_next %}<a href="{{ url_for('home.allevents', page=events.next_num) }}">Next Page &gt;&gt;</a>{%
+                else %}Next Page &gt;&gt;{% endif %}
+                <br />
+                <br />
+                <br />
+            </div>
+        </div>
+        <div style="text-align: center">
+            {% else %}
+            <div style="text-align: center">
+                <h3> No events have been added. </h3>
+                <hr class="intro-divider"> {% endif %}
             </div>
         </div>
     </div>

@@ -41,6 +41,21 @@ def allevents(page=1):
     return render_template('home/all-events.html',
                            events=events, title="Events")
 
+@home.route('/myevents')
+@home.route('/myevents/<int:page>', methods=['GET', 'POST'])
+
+def myevents(page=1):
+    """
+    Render the events on the / route all-events
+    """
+    #events = Events.query.all()
+    POSTS_PER_PAGE = 20
+    events = Events.query.filter_by(usersID=current_user.id).paginate(page, POSTS_PER_PAGE, False)
+
+
+    return render_template('home/all-events.html',
+                           events=events, title="Events")
+
 @home.route('/events/view/<int:id>', methods=['GET', 'POST'])
 def view_event(id):
     """
