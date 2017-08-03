@@ -45,7 +45,9 @@ def add_event():
     form = EventForm()
     if form.validate_on_submit():
         event = Events(name=form.name.data,
-                                description=form.description.data)
+                                description=form.description.data, startTime = form.startTime.data, 
+                                endTime = form.endTime.data,  longitude = form.longitude.data,
+                                latitude = form.latitude.data, usersID= current_user.id)
         try:
             # add event to the database
             db.session.add(event)
@@ -78,6 +80,10 @@ def edit_event(id):
     if form.validate_on_submit():
         event.name = form.name.data
         event.description = form.description.data
+        event.startTime = form.startTime.data
+        event.endTime = form.endTime.data
+        event.longitude = form.longitude.data
+        event.latitude = form.latitude.data
         db.session.commit()
         flash('You have successfully edited the event.')
 

@@ -24,3 +24,14 @@ app_config = {
     'development': DevelopmentConfig,
     'production': ProductionConfig
 }
+
+# email server
+MAIL_SERVER = 'smtp.googlemail.com'
+MAIL_PORT = 465
+MAIL_USE_TLS = False
+MAIL_USE_SSL = True
+MAIL_USERNAME = 'birminghamactivities'
+MAIL_PASSWORD = 'CS421-OV'
+
+# administrator list
+ADMINS = ['birminghamactivities@gmail.com']

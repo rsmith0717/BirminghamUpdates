@@ -171,6 +171,7 @@ a, a:hover, a:focus {
     width: 210px;
     height: 100%;
     position: fixed;
+    z-index: 1001;
     background: #2a3542;
 }
 
@@ -221,7 +222,7 @@ ul.sidebar-menu {
 }
 
 #sidebar > ul > li > ul.sub {
-    display: none;
+   /** display: none; **/
 }
 
 #sidebar > ul > li.active > ul.sub, #sidebar > ul > li > ul.sub > li > a {

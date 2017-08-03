@@ -18,6 +18,15 @@ def check_creator(id):
     else:
         return False
 
+def check_location(longitude):
+    """
+    Prevent non-admins from accessing the page
+    """
+    if longitude != "":
+        return True
+    else:
+        return False
+
 @home.route('/')
 def homepage():
     """
@@ -70,6 +79,8 @@ def view_event(id):
     latitude = event.latitude
     lng = event.longitude
 
+    tfval = check_location(latitude)
+
     """mymap = Map(
         #identifier="view-side",
         #latitude = event.latitude,
@@ -77,20 +88,13 @@ def view_event(id):
         markers = [(latitude,lng)]
     )
     """
-    mymap = Map(
-        identifier="view-side",
-        lat=37.4419,
-        lng=-122.1419,
-        markers=[(37.4419, -122.1419)]
-    )
-
     if hasattr(current_user, 'id'):
         creator = check_creator(creator_id)
         print(creator)
 
 
     return render_template('home/view-event.html',
-                           add_event=add_event, event=event, action='Edit', title="View Event", creator=creator)#mymap=mymap
+                           add_event=add_event, event=event, action='Edit', title="View Event", creator=creator, tfval=tfval)
 
 @home.route('/events/edit/<int:id>', methods=['GET', 'POST'])
 def edit_event(id):

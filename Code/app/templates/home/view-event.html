@@ -10,8 +10,10 @@
                                     <i class="icon-info-sign"></i> Edit My Event</a> </a> {% else %} {% endif
                 %}
             </p>
+            {% if tfval %}
             <h2> Google Map </h2>
-            {{googlemap("my_awesome_map", lat=event.latitude, lng=event.longitude, markers=[(event.longitude, event.latitude)])}}
+            {{googlemap("my_awesome_map", lat=event.latitude, lng=event.longitude, markers=[(event.longitude, event.latitude)])}} {%
+            else %} {% endif %}
         </div>
     </div>
 </div>

@@ -8,6 +8,7 @@ from flask_login import LoginManager
 from flask_migrate import Migrate
 from flask_googlemaps import GoogleMaps
 from flask_googlemaps import Map
+from flask_mail import Mail
 import pymysql
 pymysql.install_as_MySQLdb()
 
@@ -33,6 +34,8 @@ def create_app(config_name):
 
     GoogleMaps(app)
     Bootstrap(app)
+    mail = Mail(app)
+
 
     from app import models
 
