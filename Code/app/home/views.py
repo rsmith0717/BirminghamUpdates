@@ -130,8 +130,13 @@ def createevent():
     add_event = True
     form = EventForm()
     if form.validate_on_submit():
-        event = Events(name=form.name.data,description=form.description.data, startTime = form.startTime.data, endTime = form.endTime.data,
-        longitude = form.longitude.data, latitude = form.latitude.data, usersID=current_user.id)
+        event = Events(name=form.name.data,
+        description=form.description.data,
+        startTime = form.startTime.data,
+        endTime = form.endTime.data,
+        longitude = form.longitude.data,
+        latitude = form.latitude.data,
+        usersID=current_user.id)
         try:
             # add event to the database
             db.session.add(event)
