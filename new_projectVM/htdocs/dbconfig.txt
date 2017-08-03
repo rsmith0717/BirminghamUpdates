@@ -1,4 +1,0 @@
-school
-root
-pwd12345
-localhost
