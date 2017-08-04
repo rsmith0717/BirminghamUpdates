@@ -34,4 +34,5 @@ MAIL_USERNAME = 'birminghamactivities@gmail.com'
 MAIL_PASSWORD = 'CS421-OV'
 
 # administrator list
-ADMINS = ['birminghamactivities@gmail.com','bham.activity@gmail.com']
+ADMINS = ['birminghamactivities@gmail.com', 'bham.activity@gmail.com',
+          'smithroderick17@gmail.com', 'chanchai@uab.edu']

@@ -130,14 +130,19 @@ def test_email():
     """
     check_admin()
 
-    event = Events.query.all()
-    
+    events = Events.query.all()
+    """
+    POSTS_PER_PAGE = 20
+    events = Events.query.paginate(1, POSTS_PER_PAGE, False)
     #msg = Message('test subject', sender=ADMINS[0], recipients=ADMINS[0])
-    msg = Message('test subject', 
-    sender=ADMINS[0], 
+    """
+    msg = Message('Formatted Email Test',
+    sender=ADMINS[0],
     recipients=ADMINS)
-    
+
     msg.body = 'Test Email: this message body'
-    msg.html = '<b>HTML</b> body'
+    #msg.html = '<b>HTML</b> body'
+    msg.html = render_template('admin/events/email-template.html',
+                           events=events, title="Events for the Month")
     mail.send(msg)
-    return msg.body
+    return msg.html
