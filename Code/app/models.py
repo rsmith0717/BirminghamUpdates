@@ -83,7 +83,7 @@ class Events(db.Model):
     longitude = db.Column('Longitude', db.String(200))
 
 
-    
+
     #users = db.relationship('User', backref='events',
                                 #lazy='dynamic')
 

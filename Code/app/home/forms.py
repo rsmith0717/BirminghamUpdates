@@ -10,6 +10,6 @@ class EventForm(FlaskForm):
     description = StringField('Description', validators=[DataRequired()])
     startTime = StringField('Start Time', validators=[DataRequired()])
     endTime = StringField('End Time', validators=[DataRequired()])
-    longitude = StringField('Longitude', validators=[DataRequired()])
     latitude = StringField('Latitude', validators=[DataRequired()])
+    longitude = StringField('Longitude', validators=[DataRequired()])
     submit = SubmitField('Submit')

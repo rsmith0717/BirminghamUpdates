@@ -1,4 +1,0 @@
-webproject
-root
-pwd12345
-localhost

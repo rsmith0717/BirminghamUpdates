@@ -1,1 +1,0 @@
-{"virtualbox":{"/var/www/html":{"guestpath":"/var/www/html","hostpath":"/Users/ccl/OneDrive/Documents/uab/2017_Summer/AdvWebApp/Project/new_projectVM","disabled":false,"__vagrantfile":true},"/vagrant":{"guestpath":"/vagrant","hostpath":"/Users/ccl/OneDrive/Documents/uab/2017_Summer/AdvWebApp/Project/new_projectVM","disabled":false,"__vagrantfile":true}}}
