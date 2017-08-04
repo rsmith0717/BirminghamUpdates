@@ -1,11 +1,18 @@
 # views 2 change Event to Events
+from app import mail
 from flask import abort, flash, redirect, render_template, url_for
 from flask_login import current_user, login_required
+from flask_mail import Message, Mail
+from flask import current_app
+
 
 from . import admin
 from .forms import EventForm
 from .. import db
+#from .. import mail
 from ..models import *
+from config import ADMINS
+
 
 def check_admin():
     """
@@ -113,3 +120,24 @@ def delete_event(id):
     return redirect(url_for('admin.list_events'))
 
     return render_template(title="Delete Event")
+
+#@admin.route('/test-email/', methods=['GET', 'POST'])
+@admin.route('/test-email/')
+@login_required
+def test_email():
+    """
+    Email Test
+    """
+    check_admin()
+
+    event = Events.query.all()
+    
+    #msg = Message('test subject', sender=ADMINS[0], recipients=ADMINS[0])
+    msg = Message('test subject', 
+    sender=ADMINS[0], 
+    recipients=ADMINS)
+    
+    msg.body = 'Test Email: this message body'
+    msg.html = '<b>HTML</b> body'
+    mail.send(msg)
+    return msg.body

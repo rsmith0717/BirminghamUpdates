@@ -17,14 +17,28 @@ from config import app_config
 
 db = SQLAlchemy()
 login_manager = LoginManager()
+mail = Mail()
+
 
 
 def create_app(config_name):
     app = Flask(__name__, instance_relative_config=True)
-    app.config.from_object(app_config[config_name])
+    app.config.from_object(app_config['development'])
     app.config.from_pyfile('config.py')
     app.config['GOOGLEMAPS_KEY'] = "AIzaSyDwtj6w0ghdk0un6lxhzsB3DmatH_hIYhc"
+    app.config.update(
+	DEBUG=True,
+	#EMAIL SETTINGS
+	MAIL_SERVER='smtp.gmail.com',
+	MAIL_PORT=465,
+    MAIL_USE_TLS = False,
+	MAIL_USE_SSL=True,
+	MAIL_USERNAME = 'birminghamactivities@gmail.com',
+	MAIL_PASSWORD = 'CS421-OV'
+	)
     db.init_app(app)
+    mail.init_app(app)
+
     
     login_manager.init_app(app)
     login_manager.login_message = "You must be logged in to access this page."
@@ -34,8 +48,6 @@ def create_app(config_name):
 
     GoogleMaps(app)
     Bootstrap(app)
-    mail = Mail(app)
-
 
     from app import models
 
