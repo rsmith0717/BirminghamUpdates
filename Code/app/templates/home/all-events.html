@@ -19,6 +19,7 @@
                     </tr>
                 </thead>
                 <tbody>
+                    
                     {% for event in events.items %}
                     <tr>
                         <td style="text-align:center;"> {{ event.name }} </td>
@@ -27,9 +28,13 @@
                         <td style="text-align:center;"> {{ event.endTime }} </td>
                         <td style="text-align:center;">
                             {% if event.users %} {{ event.users.count() }} {% else %} 0 {% endif %}
+                            {{event.id}}
                         </td>
                         <td> <a class="btn btn-large btn-info" href="{{ url_for('home.view_event', id=event.id) }}"> 
                                     <i class="icon-info-sign"></i> View</a> </a>
+                        </td>
+                        <td> <a class="btn btn-large btn-info" href="{{ url_for('home.attend_event', id=event.id) }}"> 
+                                    <i class="icon-info-sign"></i> Attend</a> </a>
                         </td>
                     </tr>
                     {% endfor %}

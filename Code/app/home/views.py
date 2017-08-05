@@ -4,6 +4,9 @@ from flask_googlemaps import GoogleMaps
 from flask_googlemaps import Map
 from sqlalchemy import text
 
+#{% if event.users %} {{ event.users.count() }} {% else %} 0 {% endif %}
+
+
 from . import home
 from .forms import EventForm
 from .. import db
@@ -44,6 +47,8 @@ def allevents(page=1):
     #events = Events.query.all()
     POSTS_PER_PAGE = 20
     events = Events.query.paginate(page, POSTS_PER_PAGE, False)
+    attendees = Subscription.query.count()
+   
 
 
 
@@ -79,6 +84,7 @@ def view_event(id):
     latitude = event.latitude
     lng = event.longitude
 
+    attendees = Subscription.query.filter_by(event_id=id)
     tfval = check_location(latitude)
 
     """mymap = Map(
@@ -96,7 +102,28 @@ def view_event(id):
     return render_template('home/view-event.html',
                            add_event=add_event, event=event, action='Edit', title="View Event", creator=creator, tfval=tfval)
 
+
+@home.route('/events/attend/<int:id>', methods=['GET', 'POST'])
+@login_required
+def attend_event(id):
+    """
+    View a event
+    """
+
+    event = Events.query.get_or_404(id)
+    event_id = event.id
+    username = current_user.username
+
+    subscription = Subscription(username=username, event_id=event_id)
+
+    db.session.add(subscription)
+    db.session.commit()
+    flash('You have successfully registered for an event!')
+
+    return redirect(url_for('home.allevents'))
+
 @home.route('/events/edit/<int:id>', methods=['GET', 'POST'])
+@login_required
 def edit_event(id):
     add_event = False
 

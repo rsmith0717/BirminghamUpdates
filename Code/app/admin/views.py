@@ -119,8 +119,6 @@ def delete_event(id):
     # redirect to the events page
     return redirect(url_for('admin.list_events'))
 
-    return render_template(title="Delete Event")
-
 #@admin.route('/test-email/', methods=['GET', 'POST'])
 @admin.route('/test-email/')
 @login_required
