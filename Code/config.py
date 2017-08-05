@@ -30,7 +30,7 @@ MAIL_SERVER = 'smtp.googlemail.com'
 MAIL_PORT = 465
 MAIL_USE_TLS = False
 MAIL_USE_SSL = True
-MAIL_USERNAME = 'birminghamactivities'
+MAIL_USERNAME = 'birminghamactivities@gmail.com'
 MAIL_PASSWORD = 'CS421-OV'
 
 # administrator list

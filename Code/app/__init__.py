@@ -12,6 +12,7 @@ from flask_mail import Mail
 import pymysql
 pymysql.install_as_MySQLdb()
 
+
 # local imports
 from config import app_config
 
@@ -38,7 +39,7 @@ def create_app(config_name):
     Bootstrap(app)
     mail = Mail(app)
 
-
+    #Correct position
     from app import models
 
     from .admin import admin as admin_blueprint
@@ -51,5 +52,7 @@ def create_app(config_name):
     app.register_blueprint(home_blueprint)
 
     from app import models
+
+
 
     return app

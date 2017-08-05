@@ -2,11 +2,16 @@ from flask import abort, flash, redirect, render_template, url_for
 from flask_login import current_user, login_required
 from flask_googlemaps import GoogleMaps
 from flask_googlemaps import Map
+#send message
+from flask_mail import Message,Mail
+
 
 from . import home
 from .forms import EventForm
 from .. import db
 from ..models import *
+from config import ADMINS
+
 
 
 def check_creator(id):
