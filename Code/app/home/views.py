@@ -1,9 +1,9 @@
-from flask import abort, flash, redirect, render_template, url_for
+from flask import abort, flash, redirect, render_template, url_for, jsonify,json,request
 from flask_login import current_user, login_required
 from flask_googlemaps import GoogleMaps
 from flask_googlemaps import Map
-#send message
-from flask_mail import Message,Mail
+from sqlalchemy import text
+
 
 
 from . import home
@@ -11,7 +11,6 @@ from .forms import EventForm
 from .. import db
 from ..models import *
 from config import ADMINS
-
 
 
 def check_creator(id):
@@ -49,6 +48,8 @@ def allevents(page=1):
     #events = Events.query.all()
     POSTS_PER_PAGE = 20
     events = Events.query.paginate(page, POSTS_PER_PAGE, False)
+    attendees = Subscription.query.count()
+
 
 
 
@@ -84,6 +85,7 @@ def view_event(id):
     latitude = event.latitude
     lng = event.longitude
 
+    attendees = Subscription.query.filter_by(event_id=id)
     tfval = check_location(latitude)
 
     """mymap = Map(
@@ -101,7 +103,28 @@ def view_event(id):
     return render_template('home/view-event.html',
                            add_event=add_event, event=event, action='Edit', title="View Event", creator=creator, tfval=tfval)
 
+
+@home.route('/events/attend/<int:id>', methods=['GET', 'POST'])
+@login_required
+def attend_event(id):
+    """
+    View a event
+    """
+
+    event = Events.query.get_or_404(id)
+    event_id = event.id
+    username = current_user.username
+
+    subscription = Subscription(username=username, event_id=event_id)
+
+    db.session.add(subscription)
+    db.session.commit()
+    flash('You have successfully registered for an event!')
+
+    return redirect(url_for('home.allevents'))
+
 @home.route('/events/edit/<int:id>', methods=['GET', 'POST'])
+@login_required
 def edit_event(id):
     add_event = False
 
@@ -176,3 +199,44 @@ def admin_dashboard():
         abort(403)
 
     return render_template('home/admin_dashboard.html', title="Dashboard")
+
+
+def alchemyencoder(obj):
+    """JSON encoder function for SQLAlchemy special classes."""
+    if isinstance(obj, datetime.date):
+        return obj.isoformat()
+    elif isinstance(obj, decimal.Decimal):
+        return float(obj)
+
+def haversine(lon1, lat1, lon2, lat2):
+    """
+    Calculate the great circle distance between two points
+    on the earth (specified in decimal degrees)
+    """
+    # convert decimal degrees to radians
+    lon1, lat1, lon2, lat2 = map(radians, [lon1, lat1, lon2, lat2])
+    # haversine formula
+    dlon = lon2 - lon1
+    dlat = lat2 - lat1
+    a = sin(dlat/2)**2 + cos(lat1) * cos(lat2) * sin(dlon/2)**2
+    c = 2 * asin(sqrt(a))
+    km = 6367 * c
+    return km
+
+
+
+#api - get all events api
+@home.route('/api/allevents')
+def get_tasks():
+    args = request.args
+    limit = args['limit']
+    latitude = args['latitude']
+    longitude = args['longitude']
+    radius = args['radius']
+    query = "SELECT * , ( '3959' * acos( cos(radians({0}) ) * cos( radians(latitude)) * cos(radians(longitude) - radians({1}) ) + sin( radians({0}) ) * sin(radians(latitude)))) as distance FROM `table 5` where ( '3959' * acos( cos(radians({0}) ) * cos( radians(latitude)) * cos(radians(longitude) - radians({1}) ) + sin( radians({0}) ) * sin(radians(latitude)))) < {2}".format(latitude,longitude,radius)
+    #print(query)
+    sql = text(query)
+    res = db.engine.execute(sql)
+
+    #return jsonify(dict(data=[query])) # or whatever is required
+    return json.dumps([dict(r) for r in res], default=alchemyencoder)

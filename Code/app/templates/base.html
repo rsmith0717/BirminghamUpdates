@@ -107,6 +107,16 @@
                         <li><a href="{{ url_for('admin.list_events') }}">View Events</a></li>
                     </ul>
                 </li>
+
+                <li class="sub-menu">
+                    <a href="javascript:;">
+                          <i class="fa fa-calendar"></i>
+                          <span>Email</span>
+                      </a>
+                    <ul class="sub">
+                        <li><a href="{{ url_for('admin.test_email') }}">Test Email</a></li>
+                    </ul>
+                </li>
                 {% else %}
                 <!-- Users who are authenticated but not admin -->
                 <li class="sub-menu">
