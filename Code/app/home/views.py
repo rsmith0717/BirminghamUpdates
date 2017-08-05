@@ -207,6 +207,21 @@ def alchemyencoder(obj):
     elif isinstance(obj, decimal.Decimal):
         return float(obj)
 
+def haversine(lon1, lat1, lon2, lat2):
+    """
+    Calculate the great circle distance between two points 
+    on the earth (specified in decimal degrees)
+    """
+    # convert decimal degrees to radians 
+    lon1, lat1, lon2, lat2 = map(radians, [lon1, lat1, lon2, lat2])
+    # haversine formula 
+    dlon = lon2 - lon1 
+    dlat = lat2 - lat1 
+    a = sin(dlat/2)**2 + cos(lat1) * cos(lat2) * sin(dlon/2)**2
+    c = 2 * asin(sqrt(a)) 
+    km = 6367 * c
+    return km
+
 
 
 #api - get all events api
@@ -214,7 +229,13 @@ def alchemyencoder(obj):
 def get_tasks():
     args = request.args
     limit = args['limit']
-    sql = text('select * from `table 5` limit ' + limit)
+    latitude = args['latitude']
+    longitude = args['longitude']
+    radius = args['radius']
+    query = "SELECT * , ( '3959' * acos( cos(radians({0}) ) * cos( radians(latitude)) * cos(radians(longitude) - radians({1}) ) + sin( radians({0}) ) * sin(radians(latitude)))) as distance FROM `table 5` where ( '3959' * acos( cos(radians({0}) ) * cos( radians(latitude)) * cos(radians(longitude) - radians({1}) ) + sin( radians({0}) ) * sin(radians(latitude)))) < {2}".format(latitude,longitude,radius)
+    #print(query)
+    sql = text(query)
     res = db.engine.execute(sql)
 
+    #return jsonify(dict(data=[query])) # or whatever is required
     return json.dumps([dict(r) for r in res], default=alchemyencoder)
