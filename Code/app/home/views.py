@@ -1,13 +1,13 @@
-from flask import abort, flash, redirect, render_template, url_for
+from flask import abort, flash, redirect, render_template, url_for, jsonify,json,request
 from flask_login import current_user, login_required
 from flask_googlemaps import GoogleMaps
 from flask_googlemaps import Map
+from sqlalchemy import text
 
 from . import home
 from .forms import EventForm
 from .. import db
 from ..models import *
-
 
 def check_creator(id):
     """
@@ -171,3 +171,23 @@ def admin_dashboard():
         abort(403)
 
     return render_template('home/admin_dashboard.html', title="Dashboard")
+
+
+def alchemyencoder(obj):
+    """JSON encoder function for SQLAlchemy special classes."""
+    if isinstance(obj, datetime.date):
+        return obj.isoformat()
+    elif isinstance(obj, decimal.Decimal):
+        return float(obj)
+
+
+
+#api - get all events api
+@home.route('/api/allevents')
+def get_tasks():
+    args = request.args
+    limit = args['limit']
+    sql = text('select * from `table 5` limit ' + limit)
+    res = db.engine.execute(sql)
+
+    return json.dumps([dict(r) for r in res], default=alchemyencoder)
