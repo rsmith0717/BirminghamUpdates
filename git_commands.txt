@@ -1,0 +1,9 @@
+#Create test branch and merge
+
+git commit -m "20170803: show event's owner and modify some create event"
+git push origin Lee_20170723_1905
+ls
+git checkout -b testbranch Lee_20170723_1905
+git commit -am "testbranch"
+git push origin testbranch
+history

@@ -1,0 +1,194 @@
+Flask(Microframework) tutorial
+
+Benefit of Flask:
+	- It's easy to set up
+	- It's supported by an active community
+	- It's very simple and minimalistic.
+	- It's flexible enough that you can add extensions if you need more functionality
+
+
+
+Instructions:
+1. install python
+2. install virtual environment
+	pip install virtualenv
+	pip install virtualenvwrapper
+	export WORKON_HOME=~/Envs
+	source /usr/local/bin/virtualenvwrapper.sh
+
+3. Create and activate a virtualenv
+	mkvirtualenv my-venv
+	workon my-venv
+
+4. Create project directory
+	mkdir my-project
+	cd my-project
+	pip install Flask
+	pip freeze
+
+	explain:
+		[click] = command line interface creation kit
+				->allow to add custom shell command for you app.
+		[itsdangerous]-> provides security when sending data using cryptograpchical signing
+		[jinja2] -> a powerful template engine for Python
+		[MarkupSafe]-> HTML string handling library
+		[Werkzeug]-> WSGI library. A protocol that ensures web apps and web servers can communicate effectively.
+
+5. Directory Structure
+
+	1. /app: main(app) code
+
+	2. /app/templates: store html templates
+
+	3. /app/static: store CSS and JavaScript file
+
+6. File Structure
+
+	1. run.py: it is the application's entry point.
+		- This file will be used to start the Flask server and launch our application.
+
+	2. config.py: it stores configuration variable for your app 	such as database details.
+
+	3. app/__init__.py: It initializes a Python module.
+		Without it, Python won't recogize the (app directory) as a module.
+
+	4. app/views.py: This file contains all the routes for our application. This will tell Flask what to display on which path.
+
+	5. app/models.py: Models are defined here.
+	A model is a representation of a database table in code.
+
+
+# dream-team project
+
+
+CRUD = Create Read Update Delete
+
+	1. Users register and login as employees -->
+	Users register and login as members
+
+	2. The admin will be able to create, update and delete departments and roles (database)
+
+	3.The admin will be able to assign employees to a department and assign them roles
+
+
+	4. The administrator will be able to view all employees and their details
+
+
+7. Database setup
+
+	1. Flask-SQLAlchemy: SQL tool with Python
+	- It is an Object Relational Mapper(ORM)
+	- It connects the objects of an application to tables in a RDBMS.
+	- This objects can be stored in the database and accessed without the need to write raw SQL.
+	- It can reduces the risk of SQL injection attacks because we don't have to write the input of raw SQL
+
+	2. MySQL-Python: This is a Python interface to MySQL.
+	It help us connect the MySQL database to the app.
+
+	$ pip install flask-sqlalchemy mysql-python
+
+8. Models: Represents of database table in code
+
+ - Flask login: help us to handle user management and handle loggin in, loggin out and users sessions.
+
+ - Employee model inherit from Flask-Login's UserMixin
+
+  	$ sudo pip install flask-login
+
+9. Migration: for edit and update tables in the database
+	- Using Flask-migrate package to handle the database migration by using Alembic, a lightweight database migration tool.
+
+	$ sudo pip install flask-migrate
+
+	- Create migration repository
+	$ flask db init
+
+	Virtual Environment Todo
+
+	export WORKON_HOME=~/Envs
+	source /usr/local/bin/virtualenvwrapper.sh
+	workon test
+
+		pip install Flask
+		pip install flask-login
+		pip install flask-migrate
+		pip install pymysql
+
+		inside __init__.py
+			#add following
+			#Flask migrate error solution
+			import pymysql
+			pymysql.install_as_MySQLdb()
+
+		export FLASK_CONFIG=development
+		export FLASK_APP=run.py
+
+
+10. Blueprint : organize project structure  (Folder structure for each page)
+		- 3 blueprints : Howe, Admin, Auth
+
+
+11. Auth Blueprint
+		- Use WTF form
+		pip install Flask-WTF
+		pip install flask-bootstrap
+
+12. Install flask google map api
+
+		sudo pip install flask_googlemaps
+
+
+#ERROR#
+Traceback (most recent call last):
+  File "run.py", line 14, in <module>
+    app = create_app(config_name)
+  File "/var/www/html/Code/app/__init__.py", line 22, in create_app
+    app.config.from_object(app_config[config_name])
+KeyError: None
+#SOLUTION#
+	- nano run.py
+	- Change config_name to
+			config_name = 'development'
+	- nano app/__init__.py
+	- Change  app.config.from_object(app_config[config_name])
+				to  app.config.from_object(app_config['development'])
+_______________________________________________________________________
+
+#ERROR: Can't Access MySQL DB from MYSQL workbench#
+
+#SOLUTION#:
+- Ref: https://stackoverflow.com/questions/8348506/grant-remote-access-of-mysql-database-from-any-ip-address
+	- $ sudo nano /etc/mysql/mysql.conf.d/mysqld.cnf
+	- comment on bind-address in mysqld.cnf
+	 #bind-address           = 127.0.0.1
+	- $ sudo /etc/init.d/mysql restart
+
+	- Change grant privilege
+		- login to mysql
+			$ mysql -u root -p
+			$ pwd12345
+		- Grant privilege
+	 		mysql> GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'pwd12345' WITH GRANT OPTION;
+			mysql> GRANT ALL PRIVILEGES ON *.* TO 'dt_admin'@'%' IDENTIFIED BY 'dt2016' WITH GRANT OPTION;
+			mysql> FLUSH PRIVILEGES;
+_______________________________________________________________________
+#ERROR: application can't run on host machine browser#
+
+#SOLUTION#:
+	- $ nano run.py
+	- change app.run() to
+	 		app.run(host='0.0.0.0',port=5000)
+
+
+________________________________________________________________________
+
+AFTER CLONE Project then
+	- create apache config file in /var/apache2/sites-available/
+	- create wsgi file in project home folder.
+
+
+________________________________________________________________________
+
+Create Event page
+	- alter database
+		- add users_id in table: table5
