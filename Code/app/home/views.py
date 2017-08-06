@@ -4,13 +4,14 @@ from flask_googlemaps import GoogleMaps
 from flask_googlemaps import Map
 from sqlalchemy import text
 
-#{% if event.users %} {{ event.users.count() }} {% else %} 0 {% endif %}
 
 
 from . import home
 from .forms import EventForm
 from .. import db
 from ..models import *
+from config import ADMINS
+
 
 def check_creator(id):
     """
@@ -48,7 +49,7 @@ def allevents(page=1):
     POSTS_PER_PAGE = 20
     events = Events.query.paginate(page, POSTS_PER_PAGE, False)
     attendees = Subscription.query.count()
-   
+
 
 
 
@@ -209,16 +210,16 @@ def alchemyencoder(obj):
 
 def haversine(lon1, lat1, lon2, lat2):
     """
-    Calculate the great circle distance between two points 
+    Calculate the great circle distance between two points
     on the earth (specified in decimal degrees)
     """
-    # convert decimal degrees to radians 
+    # convert decimal degrees to radians
     lon1, lat1, lon2, lat2 = map(radians, [lon1, lat1, lon2, lat2])
-    # haversine formula 
-    dlon = lon2 - lon1 
-    dlat = lat2 - lat1 
+    # haversine formula
+    dlon = lon2 - lon1
+    dlat = lat2 - lat1
     a = sin(dlat/2)**2 + cos(lat1) * cos(lat2) * sin(dlon/2)**2
-    c = 2 * asin(sqrt(a)) 
+    c = 2 * asin(sqrt(a))
     km = 6367 * c
     return km
 

@@ -12,6 +12,7 @@ from flask_mail import Mail
 import pymysql
 pymysql.install_as_MySQLdb()
 
+
 # local imports
 from config import app_config
 
@@ -62,5 +63,7 @@ def create_app(config_name):
     app.register_blueprint(home_blueprint)
 
     from app import models
+
+
 
     return app
