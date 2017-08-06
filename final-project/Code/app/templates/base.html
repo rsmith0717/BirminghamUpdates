@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}">
+
+    <link rel='shortcut icon' type='image/x-icon' href='img/logo.ico' />
+    <title>{{ title }} | Birmingham Updates </title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Mosaddek">
+
+    <!-- Bootstrap core CSS -->
+    <link href="{{ url_for('static', filename='css/jquery.fancybox.css') }}" rel="stylesheet">
+
+    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/bootstrap-reset.css') }}" rel="stylesheet">
+    <!--external css-->
+    <link href="{{ url_for('static', filename='assets/font-awesome/css/font-awesome.css') }}" rel="stylesheet" />
+    <link href="{{ url_for('static', filename='assets/jquery-file-upload/css/jquery.fileupload-ui.css') }}" rel="stylesheet"
+        type="text/css">
+    <!-- Custom styles for this template -->
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/style-responsive.css') }}" rel="stylesheet" />
+
+    <link href="{{ url_for('static', filename='css/responsive.bootstrap.min.css') }}" rel="stylesheet" />
+
+    <!-- Bootstrap core CSS -->
+    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/bootstrap-reset.css') }}" rel="stylesheet">
+    <!--external css-->
+    <link href="{{ url_for('static', filename='assets/font-awesome/css/font-awesome.css') }}" rel="stylesheet" />
+
+    <!-- Custom styles for this template -->
+    <link href="{{ url_for('static', filename='css/style_newui.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/style-responsive.css') }}" rel="stylesheet" />
+
+</head>
+
+<body>
+    <section id="container" class="">
+        <!--header start-->
+        <header class="header white-bg">
+            <div class="sidebar-toggle-box">
+                <div data-original-title="Toggle Navigation" data-placement="right" class="fa fa-bars tooltips"></div>
+            </div>
+
+            <a href="{{ url_for('home.homepage') }}" class="logo">BHAM <span> Activities</span></a>
+
+            <div class="nav notify-row" id="top_menu">
+                </ul>
+            </div>
+            <div class="top-nav ">
+                <ul class="nav pull-right top-menu">
+                    <li class="dropdown">
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                      <span class="username">{{ current_user.username }}</span>
+                      <b class="caret"></b>
+                  </a> {% if current_user.is_authenticated %}
+                        <ul class="dropdown-menu extended logout">
+                            <div class="log-arrow-up"></div>
+                            <li><a href="{{ url_for('auth.logout') }}"><i class="fa fa-key"></i> Log Out</a></li>
+                        </ul>
+                        {% else %}
+                        <ul class="dropdown-menu extended login">
+                            <div class="log-arrow-up"></div>
+                            <li><a href="{{ url_for('auth.login') }}"><i class="fa fa-key"></i> Log In</a></li>
+                            <li><a href="{{ url_for('auth.register') }}"><i class="fa fa-key"></i> Register</a></li>
+                        </ul>
+                        {% endif %}
+                    </li>
+                    <!-- user login dropdown end -->
+                </ul>
+            </div>
+    </section>
+
+    <aside>
+        <div id="sidebar" class="nav-collapse ">
+            <!-- sidebar menu start-->
+            <ul class="sidebar-menu" id="nav-accordion">
+                {% if current_user.is_authenticated %} {% if current_user.is_admin %}
+                <!-- Users who are authenticated and admin -->
+                <li class="sub-menu">
+                    <a href="javascript:;">
+                          <i class="fa fa-user"></i>
+                          <span>User</span>
+                      </a>
+                    <ul class="sub">
+                        <!--    <li><a  href="boxed_page.html">User</a></li>-->
+                        <li><a href="#">Add Users</a></li>
+                        <li><a href="#"> View Users</a></li>
+
+                    </ul>
+                </li>
+
+                <li class="sub-menu">
+                    <a href="javascript:;">
+                          <i class="fa fa-calendar"></i>
+                          <span>Events</span>
+                      </a>
+                    <ul class="sub">
+                        <li><a href="{{ url_for('admin.add_event') }}">Add Event</a></li>
+                        <li><a href="{{ url_for('admin.list_events') }}">View Events</a></li>
+                    </ul>
+                </li>
+                {% else %}
+                <!-- Users who are authenticated but not admin -->
+                <li class="sub-menu">
+                    <a href="javascript:;">
+                          <i class="fa fa-calendar"></i>
+                          <span>Events</span>
+                      </a>
+                    <ul class="sub">
+                        <li><a href="{{ url_for('home.createevent') }}">Add Event</a></li>
+                        <li><a href="{{ url_for('home.allevents') }}">View Events</a></li>
+                        <li><a href="{{ url_for('home.myevents') }}">My Events</a></li>
+                    </ul>
+                </li>
+
+
+                {% endif %} {% else %}
+                <!-- Users who are not authenticated -->
+                <li class="sub-menu">
+                    <a href="javascript:;">
+                          <i class="fa fa-calendar"></i>
+                          <span>Events</span>
+                      </a>
+                    <ul class="sub">
+                        <li><a href="{{ url_for('home.allevents') }}">View Events</a></li>
+                    </ul>
+                </li>
+
+                {% endif %}
+                <!--
+                <li class="sub-menu">
+                    <a href="javascript:;">
+                          <i class="fa fa-calendar"></i>
+                          <span>Events</span>
+                      </a>
+                    <ul class="sub">
+                        <li><a href="#">Add Event</a></li>
+                        <li><a href="{{ url_for('admin.list_events') }}">View Event</a></li>
+                    </ul>
+                </li>
+
+                <li class="sub-menu">
+                    <a href="javascript:;">
+                          <i class="fa  fa-shopping-cart"></i>
+                          <span>Categories</span>
+                      </a>
+                    <ul class="sub">
+                        <li><a href="#">View Categories</a></li>
+                    </ul>
+                </li>
+                <li class="sub-menu">
+                    <a href="javascript:;">
+                          <i class="fa fa-map-marker"></i>
+                          <span>Reporting</span>
+                      </a>
+                    <ul class="sub">
+                        <li><a href="#">Locate Users</a></li>
+                        <li><a href="#">Locate Events</a></li>
+                    </ul>
+                </li>
+                -->
+            </ul>
+        </div>
+    </aside>
+    <!--sidebar end-->
+    <div class="wrapper">
+        {% block body %} {% endblock %}
+        <div class="push"></div>
+    </div>
+
+    <script type = "text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script type = "text/javascript" src="{{ url_for('static', filename='js/bootstrap.min.js')}}"></script>
+    <script type = "text/javascript" src="{{url_for('static', filename='js/jquery.dcjqaccordion.2.7.js')}}"></script>
+    <script type = "text/javascript" src="{{url_for('static', filename='js/jquery.scrollTo.min.js')}}"></script>
+    <script type = "text/javascript" src="{{url_for('static', filename='js/jquery.nicescroll.js')}}"></script>
+    <script type = "text/javascript" src="{{url_for('static', filename='js/respond.min.js')}}"></script>
+    <script type = "text/javascript" src="{{url_for('static', filename='js/common-scripts.js')}}"></script>
+
+
+
+    <!--<script src="../static/js/jquery.dcjqaccordion.2.7.js"></script>
+    <script src="../static/js/bootstrap.min.js"></script>
+    <script src="../static/js/jquery.scrollTo.min.js"></script>
+    <script src="../static/js/jquery.nicescroll.js" type="text/javascript"></script>
+    <script src="../static/js/respond.min.js"></script>
+    <script src="../static/js/common-scripts.js"></script> -->
+</body>
+
+<div class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <p class="copyright text-muted small">Copyright © 2017. All Rights Reserved</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+</html>
