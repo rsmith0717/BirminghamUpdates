@@ -19,7 +19,7 @@ class User(UserMixin, db.Model):
     first_name = db.Column(db.String(60), index=True)
     last_name = db.Column(db.String(60), index=True)
     password_hash = db.Column(db.String(128))
-    event_id = db.Column(db.Integer, db.ForeignKey('events.id'))
+    #event_id = db.Column(db.Integer, db.ForeignKey('events.id'))
     is_admin = db.Column(db.Boolean, default=False)
 
     @property
@@ -68,7 +68,7 @@ class Events(db.Model):
     Create a Events table
     """
 
-    __tablename__ = 'table 5'
+    __tablename__ = 'events'
 
     id = db.Column('event_id', db.Integer, primary_key=True)
     usersID = db.Column('users_id', db.Integer)
