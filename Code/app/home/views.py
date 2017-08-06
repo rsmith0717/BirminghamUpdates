@@ -54,6 +54,7 @@ def allevents(page=1):
 
 
     return render_template('home/all-events.html',
+
                            events=events, title="Events")
 
 @home.route('/myevents')
@@ -85,7 +86,8 @@ def view_event(id):
     latitude = event.latitude
     lng = event.longitude
 
-    attendees = Subscription.query.filter_by(event_id=id)
+    attendees = Subscription.query.filter_by(event_id=id).count()
+    attendanceList = Subscription.query.filter_by(event_id=id)
     tfval = check_location(latitude)
 
     """mymap = Map(
@@ -101,14 +103,15 @@ def view_event(id):
 
 
     return render_template('home/view-event.html',
-                           add_event=add_event, event=event, action='Edit', title="View Event", creator=creator, tfval=tfval)
+                           add_event=add_event, event=event, action='Edit', title="View Event", 
+                           creator=creator, tfval=tfval, attendees=attendees, attendanceList=attendanceList)
 
 
 @home.route('/events/attend/<int:id>', methods=['GET', 'POST'])
 @login_required
 def attend_event(id):
     """
-    View a event
+    Attend a event
     """
 
     event = Events.query.get_or_404(id)

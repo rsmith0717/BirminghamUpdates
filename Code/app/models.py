@@ -19,10 +19,6 @@ class User(UserMixin, db.Model):
     first_name = db.Column(db.String(60), index=True)
     last_name = db.Column(db.String(60), index=True)
     password_hash = db.Column(db.String(128))
-<<<<<<< HEAD
-=======
-    #event_id = db.Column(db.Integer, db.ForeignKey('events.id'))
->>>>>>> 16613e68206efb54ab7bca54c8c66f2e2666acc3
     is_admin = db.Column(db.Boolean, default=False)
 
     @property

@@ -39,6 +39,37 @@ def list_events(page=1):
     return render_template('admin/events/events.html',
                            events=events, title="Events")
 
+@admin.route('/users', methods=['GET', 'POST'])
+@admin.route('/users/<int:page>', methods=['GET', 'POST'])
+@login_required
+def list_users(page=1):
+    """
+    List all users
+    """
+    check_admin()
+
+    POSTS_PER_PAGE = 20
+    users = User.query.paginate(page, POSTS_PER_PAGE, False)
+
+    return render_template('admin/users/users.html',
+                           users=users, title="Users")
+
+@admin.route('/users/delete/<int:id>', methods=['GET', 'POST'])
+@login_required
+def delete_user(id):
+    """
+    Delete a user from the database
+    """
+    check_admin()
+
+    user = User.query.get_or_404(id)
+    db.session.delete(user)
+    db.session.commit()
+    flash('You have successfully deleted the user.')
+
+    # redirect to the events page
+    return redirect(url_for('admin.list_users'))
+
 @admin.route('/events/add', methods=['GET', 'POST'])
 @login_required
 def add_event():
