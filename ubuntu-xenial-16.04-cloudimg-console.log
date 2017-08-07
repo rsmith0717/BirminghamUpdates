@@ -715,4 +715,101 @@ ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC0N+SlXhyYw/BEcvbYTPSaAeFedOulhI1pkU0V7HdK
 
 Ubuntu 16.04.2 LTS bhamactivities ttyS0
 
-bhamactivities login: 
+bhamactivities login: [  OK  ] Stopped target Timers.
+[  OK  ] Stopped target Graphical Interface.
+         Stopping Authenticate and Authorize Users to Run Privileged Tasks...
+[  OK  ] Stopped Timer to automatically refresh ins
+         Stopping Serial Getty on ttyS0...
+[  OK  ] Stopped Daily apt upgrade and clean activities.
+[  OK  ] Stopped Daily apt download activities.
+[  OK  ] Stopped target System Time Synchronized.
+[  OK  ] Closed Load/Save RF Kill Switch Status /dev/rfkill Watch.
+         Stopping LSB: daemon to balance interrupts for SMP systems...
+         Stopping Regular background program processing daemon...
+         Stopping Snappy daemon...
+[  OK  ] Stopped Daily Cleanup of Temporary Directories.
+         Stopping Unattended Upgrades Shutdown...
+[  OK  ] Unmounted /var/lib/lxcfs.
+[  OK  ] Stopped Regular background program processing daemon.
+[  OK  ] Stopped Snappy daemon.
+[  OK  ] Stopped ACPI event daemon.
+[  OK  ] Stopped System Logging Service.
+[  OK  ] Stopped Deferred execution scheduler.
+[  OK  ] Stopped Accounts Service.
+[  OK  ] Stopped Authenticate and Authorize Users to Run Privileged Tasks.
+[  OK  ] Stopped Getty on tty1.
+[  OK  ] Stopped Serial Getty on ttyS0.
+[  OK  ] Stopped OpenBSD Secure Shell server.
+[  OK  ] Stopped User Manager for UID 1000.
+[  OK  ] Stopped Session 4 of user ubuntu.
+[  OK  ] Stopped D-Bus System Message Bus.
+[  OK  ] Stopped Unattended Upgrades Shutdown.
+[  OK  ] Stopped FUSE filesystem for LXC.
+[  OK  ] Stopped LXD - container startup/shutdown.
+[  OK  ] Stopped LSB: Record successful boot for GRUB.
+[  OK  ] Stopped LSB: MD monitoring daemon.
+[  OK  ] Stopped LSB: VirtualBox Linux Additions.
+[  OK  ] Stopped LSB: automatic crash report generation.
+[  OK  ] Stopped LSB: Set the CPU Frequency Scaling governor to "ondemand".
+[  OK  ] Stopped LSB: daemon to balance interrupts for SMP systems.
+[  OK  ] Removed slice User Slice of ubuntu.
+         Stopping Login Service...
+[  OK  ] Removed slice system-serial\x2dgetty.slice.
+[  OK  ] Stopped /etc/rc.local Compatibility.
+[  OK  ] Removed slice system-getty.slice.
+         Stopping Permit User Sessions...
+[  OK  ] Stopped Login Service.
+[  OK  ] Stopped Permit User Sessions.
+[  OK  ] Stopped target User and Group Name Lookups.
+[  OK  ] Stopped MySQL Community Server.
+[  OK  ] Stopped LSB: Apache2 web server.
+[  OK  ] Stopped target Remote File Systems.
+[  OK  ] Stopped target Remote File Systems (Pre).
+         Stopping Login to default iSCSI targets...
+[  OK  ] Stopped target Basic System.
+[  OK  ] Stopped target Slices.
+[  OK  ] Removed slice User and Session Slice.
+[  OK  ] Stopped target Sockets.
+[  OK  ] Closed LXD - unix socket.
+[  OK  ] Closed Socket activation for snappy daemon.
+[  OK  ] Closed D-Bus System Message Bus Socket.
+[  OK  ] Closed Syslog Socket.
+[  OK  ] Closed UUID daemon activation socket.
+[  OK  ] Closed ACPID Listen Socket.
+[  OK  ] Stopped target Paths.
+[  OK  ] Stopped Forward Password Requests to Wall Directory Watch.
+[  OK  ] Stopped Dispatch Password Requests to Console Directory Watch.
+[  OK  ] Stopped ACPI Events Check.
+[  OK  ] Stopped target System Initialization.
+[  OK  ] Stopped target Encrypted Volumes.
+[  OK  ] Stopped target Swap.
+         Stopping Load/Save Random Seed...
+[  OK  ] Stopped Commit a transient machine-id on disk.
+[  OK  ] Stopped Create Volatile Files and Directories.
+[  OK  ] Stopped Load/Save Random Seed.
+[  OK  ] Stopped Login to default iSCSI targets.
+         Stopping iSCSI initiator daemon (iscsid)...
+[  OK  ] Stopped iSCSI initiator daemon (iscsid).
+[  OK  ] Stopped target Network is Online.
+[  OK  ] Stopped target Network.
+[  OK  ] Stopped Initial cloud-init job (metadata service crawler).
+         Stopping Raise network interfaces...
+[  OK  ] Stopped Raise network interfaces.
+[  OK  ] Stopped target Network (Pre).
+[  OK  ] Stopped Initial cloud-init job (pre-networking).
+[  OK  ] Stopped Apply Kernel Variables.
+[  OK  ] Stopped target Local File Systems.
+         Unmounting /vagrant...
+         Unmounting /var/www/html...
+         Unmounting /run/user/1000...
+[  OK  ] Stopped Load Kernel Modules.
+[  OK  ] Unmounted /vagrant.
+[  OK  ] Unmounted /var/www/html.
+[  OK  ] Unmounted /run/user/1000.
+[  OK  ] Reached target Unmount All Filesystems.
+[  OK  ] Stopped target Local File Systems (Pre).
+[  OK  ] Stopped Remount Root and Kernel File Systems.
+         Stopping Monitoring of LVM2 mirrors... dmeventd or progress polling...
+[  OK  ] Stopped Create Static Device Nodes in /dev.
+[  OK  ] Reached target Shutdown.
+[ 1029.092199] reboot: Power down
