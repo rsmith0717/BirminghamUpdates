@@ -1,9 +1,19 @@
+CLASS: UAB CS622 Advance Web Application Developement.
 GROUP: BHAM Activities
+MEMBERS:
+"Purohit, Akhil Kumar" <email: akhil29@uab.edu>
+"Lee, Chanchai" <chanchai@uab.edu>
+"Zohair, Muhammad" <zohair@uab.edu>
+"Smith, Roderick O" <rsmith17@uab.edu>
+
 
 ssh: git@gitlab.cs.uab.edu:rsmith17/final-project.git
 https: https://gitlab.cs.uab.edu/rsmith17/final-project.git
 
 To run the project:
+
+You can ignore step 1 and step 2 if your SSH key has been already setup on the gitlab.
+
 1. Open terminal(Linux/Mac) or git bash (windows).
 2. Setup git SSH key (Reference from CS621/ASM1):
   - Open terminal(Linux/Mac) or git bash (windows).

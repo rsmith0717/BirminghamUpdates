@@ -1,0 +1,358 @@
+.
+├── database
+└── final-project
+    └── Code
+        ├── app
+        │   ├── admin
+        │   │   └── __pycache__
+        │   ├── auth
+        │   │   └── __pycache__
+        │   ├── home
+        │   │   └── __pycache__
+        │   ├── __pycache__
+        │   ├── static
+        │   │   ├── assets
+        │   │   │   ├── advanced-datatable
+        │   │   │   │   ├── docs
+        │   │   │   │   │   └── media
+        │   │   │   │   │       ├── css
+        │   │   │   │   │       ├── images
+        │   │   │   │   │       ├── js
+        │   │   │   │   │       └── license
+        │   │   │   │   ├── examples
+        │   │   │   │   │   ├── advanced_init
+        │   │   │   │   │   ├── ajax
+        │   │   │   │   │   │   └── sources
+        │   │   │   │   │   ├── api
+        │   │   │   │   │   ├── basic_init
+        │   │   │   │   │   ├── data_sources
+        │   │   │   │   │   ├── examples_support
+        │   │   │   │   │   │   ├── syntax
+        │   │   │   │   │   │   │   ├── css
+        │   │   │   │   │   │   │   ├── images
+        │   │   │   │   │   │   │   ├── js
+        │   │   │   │   │   │   │   └── license
+        │   │   │   │   │   │   └── themes
+        │   │   │   │   │   │       ├── smoothness
+        │   │   │   │   │   │       │   └── images
+        │   │   │   │   │   │       └── ui-lightness
+        │   │   │   │   │   │           └── images
+        │   │   │   │   │   ├── plug-ins
+        │   │   │   │   │   └── server_side
+        │   │   │   │   │       └── scripts
+        │   │   │   │   ├── extras
+        │   │   │   │   │   ├── AutoFill
+        │   │   │   │   │   │   └── media
+        │   │   │   │   │   │       ├── css
+        │   │   │   │   │   │       ├── docs
+        │   │   │   │   │   │       │   └── media
+        │   │   │   │   │   │       │       ├── css
+        │   │   │   │   │   │       │       ├── images
+        │   │   │   │   │   │       │       ├── js
+        │   │   │   │   │   │       │       └── license
+        │   │   │   │   │   │       ├── images
+        │   │   │   │   │   │       └── js
+        │   │   │   │   │   ├── ColReorder
+        │   │   │   │   │   │   └── media
+        │   │   │   │   │   │       ├── css
+        │   │   │   │   │   │       ├── docs
+        │   │   │   │   │   │       │   └── media
+        │   │   │   │   │   │       │       ├── css
+        │   │   │   │   │   │       │       ├── images
+        │   │   │   │   │   │       │       ├── js
+        │   │   │   │   │   │       │       └── license
+        │   │   │   │   │   │       ├── images
+        │   │   │   │   │   │       └── js
+        │   │   │   │   │   ├── ColVis
+        │   │   │   │   │   │   └── media
+        │   │   │   │   │   │       ├── css
+        │   │   │   │   │   │       ├── docs
+        │   │   │   │   │   │       │   └── media
+        │   │   │   │   │   │       │       ├── css
+        │   │   │   │   │   │       │       ├── images
+        │   │   │   │   │   │       │       ├── js
+        │   │   │   │   │   │       │       └── license
+        │   │   │   │   │   │       ├── images
+        │   │   │   │   │   │       └── js
+        │   │   │   │   │   ├── FixedColumns
+        │   │   │   │   │   │   ├── docs
+        │   │   │   │   │   │   │   └── media
+        │   │   │   │   │   │   │       ├── css
+        │   │   │   │   │   │   │       ├── images
+        │   │   │   │   │   │   │       ├── js
+        │   │   │   │   │   │   │       └── license
+        │   │   │   │   │   │   └── media
+        │   │   │   │   │   │       └── js
+        │   │   │   │   │   ├── FixedHeader
+        │   │   │   │   │   │   └── js
+        │   │   │   │   │   ├── KeyTable
+        │   │   │   │   │   │   └── js
+        │   │   │   │   │   ├── Scroller
+        │   │   │   │   │   │   └── media
+        │   │   │   │   │   │       ├── css
+        │   │   │   │   │   │       ├── data
+        │   │   │   │   │   │       ├── docs
+        │   │   │   │   │   │       │   └── media
+        │   │   │   │   │   │       │       ├── css
+        │   │   │   │   │   │       │       ├── images
+        │   │   │   │   │   │       │       ├── js
+        │   │   │   │   │   │       │       └── license
+        │   │   │   │   │   │       ├── images
+        │   │   │   │   │   │       └── js
+        │   │   │   │   │   └── TableTools
+        │   │   │   │   │       └── media
+        │   │   │   │   │           ├── as3
+        │   │   │   │   │           │   └── lib
+        │   │   │   │   │           ├── css
+        │   │   │   │   │           ├── images
+        │   │   │   │   │           │   └── psd
+        │   │   │   │   │           ├── js
+        │   │   │   │   │           └── swf
+        │   │   │   │   ├── media
+        │   │   │   │   │   ├── css
+        │   │   │   │   │   ├── images
+        │   │   │   │   │   ├── js
+        │   │   │   │   │   ├── src
+        │   │   │   │   │   │   ├── api
+        │   │   │   │   │   │   ├── core
+        │   │   │   │   │   │   ├── ext
+        │   │   │   │   │   │   └── model
+        │   │   │   │   │   └── unit_testing
+        │   │   │   │   │       ├── performance
+        │   │   │   │   │       ├── templates
+        │   │   │   │   │       ├── tests
+        │   │   │   │   │       │   └── 1_dom
+        │   │   │   │   │       └── tests_onhold
+        │   │   │   │   │           ├── 1_dom
+        │   │   │   │   │           ├── 2_js
+        │   │   │   │   │           ├── 3_ajax
+        │   │   │   │   │           ├── 4_server-side
+        │   │   │   │   │           ├── 5_ajax_objects
+        │   │   │   │   │           └── 6_delayed_rendering
+        │   │   │   │   └── scripts
+        │   │   │   ├── bootstrap-colorpicker
+        │   │   │   │   ├── css
+        │   │   │   │   ├── img
+        │   │   │   │   ├── js
+        │   │   │   │   └── less
+        │   │   │   ├── bootstrap-datepicker
+        │   │   │   │   ├── css
+        │   │   │   │   ├── js
+        │   │   │   │   └── less
+        │   │   │   ├── bootstrap-daterangepicker
+        │   │   │   ├── bootstrap-datetimepicker
+        │   │   │   │   ├── build
+        │   │   │   │   ├── css
+        │   │   │   │   ├── js
+        │   │   │   │   │   └── locales
+        │   │   │   │   ├── less
+        │   │   │   │   ├── sample
+        │   │   │   │   │   ├── bootstrap
+        │   │   │   │   │   │   ├── css
+        │   │   │   │   │   │   ├── img
+        │   │   │   │   │   │   └── js
+        │   │   │   │   │   └── jquery
+        │   │   │   │   ├── screenshot
+        │   │   │   │   └── tests
+        │   │   │   │       ├── assets
+        │   │   │   │       └── suites
+        │   │   │   │           ├── keyboard_navigation
+        │   │   │   │           └── mouse_navigation
+        │   │   │   ├── bootstrap-fileupload
+        │   │   │   ├── bootstrap-inputmask
+        │   │   │   ├── bootstrap-switch
+        │   │   │   │   ├── examples
+        │   │   │   │   └── static
+        │   │   │   │       ├── js
+        │   │   │   │       ├── less
+        │   │   │   │       │   └── deps
+        │   │   │   │       └── stylesheets
+        │   │   │   ├── bootstrap-timepicker
+        │   │   │   │   ├── compiled
+        │   │   │   │   ├── js
+        │   │   │   │   └── less
+        │   │   │   ├── bootstrap-wysihtml5
+        │   │   │   │   └── locales
+        │   │   │   ├── chart-master
+        │   │   │   │   ├── docs
+        │   │   │   │   ├── samples
+        │   │   │   │   └── site
+        │   │   │   │       └── assets
+        │   │   │   ├── ckeditor
+        │   │   │   │   ├── lang
+        │   │   │   │   ├── plugins
+        │   │   │   │   │   ├── a11yhelp
+        │   │   │   │   │   │   └── dialogs
+        │   │   │   │   │   │       └── lang
+        │   │   │   │   │   ├── about
+        │   │   │   │   │   │   └── dialogs
+        │   │   │   │   │   ├── clipboard
+        │   │   │   │   │   │   └── dialogs
+        │   │   │   │   │   ├── dialog
+        │   │   │   │   │   ├── fakeobjects
+        │   │   │   │   │   │   └── images
+        │   │   │   │   │   ├── image
+        │   │   │   │   │   │   ├── dialogs
+        │   │   │   │   │   │   └── images
+        │   │   │   │   │   ├── link
+        │   │   │   │   │   │   ├── dialogs
+        │   │   │   │   │   │   └── images
+        │   │   │   │   │   ├── magicline
+        │   │   │   │   │   │   └── images
+        │   │   │   │   │   ├── pastefromword
+        │   │   │   │   │   │   └── filter
+        │   │   │   │   │   ├── scayt
+        │   │   │   │   │   │   └── dialogs
+        │   │   │   │   │   ├── specialchar
+        │   │   │   │   │   │   └── dialogs
+        │   │   │   │   │   │       └── lang
+        │   │   │   │   │   ├── table
+        │   │   │   │   │   │   └── dialogs
+        │   │   │   │   │   ├── tabletools
+        │   │   │   │   │   │   └── dialogs
+        │   │   │   │   │   └── wsc
+        │   │   │   │   │       └── dialogs
+        │   │   │   │   ├── samples
+        │   │   │   │   │   ├── assets
+        │   │   │   │   │   │   ├── inlineall
+        │   │   │   │   │   │   ├── outputxhtml
+        │   │   │   │   │   │   └── uilanguages
+        │   │   │   │   │   └── plugins
+        │   │   │   │   │       ├── dialog
+        │   │   │   │   │       │   └── assets
+        │   │   │   │   │       ├── enterkey
+        │   │   │   │   │       ├── htmlwriter
+        │   │   │   │   │       │   └── assets
+        │   │   │   │   │       │       └── outputforflash
+        │   │   │   │   │       ├── magicline
+        │   │   │   │   │       ├── toolbar
+        │   │   │   │   │       └── wysiwygarea
+        │   │   │   │   └── skins
+        │   │   │   │       └── moono
+        │   │   │   │           └── images
+        │   │   │   ├── data-tables
+        │   │   │   │   └── images
+        │   │   │   ├── dropzone
+        │   │   │   │   ├── css
+        │   │   │   │   │   └── stylus
+        │   │   │   │   └── images
+        │   │   │   ├── fancybox
+        │   │   │   │   ├── demo
+        │   │   │   │   ├── lib
+        │   │   │   │   └── source
+        │   │   │   │       └── helpers
+        │   │   │   ├── file-uploader
+        │   │   │   │   ├── cors
+        │   │   │   │   ├── css
+        │   │   │   │   ├── img
+        │   │   │   │   ├── js
+        │   │   │   │   │   ├── cors
+        │   │   │   │   │   └── vendor
+        │   │   │   │   ├── server
+        │   │   │   │   │   ├── gae-go
+        │   │   │   │   │   │   ├── app
+        │   │   │   │   │   │   └── static
+        │   │   │   │   │   ├── gae-python
+        │   │   │   │   │   │   └── static
+        │   │   │   │   │   ├── node
+        │   │   │   │   │   │   ├── public
+        │   │   │   │   │   │   │   └── files
+        │   │   │   │   │   │   └── tmp
+        │   │   │   │   │   └── php
+        │   │   │   │   │       └── files
+        │   │   │   │   └── test
+        │   │   │   ├── flot
+        │   │   │   │   └── examples
+        │   │   │   ├── font-awesome
+        │   │   │   │   ├── css
+        │   │   │   │   ├── fonts
+        │   │   │   │   ├── less
+        │   │   │   │   └── scss
+        │   │   │   ├── fuelux
+        │   │   │   │   ├── css
+        │   │   │   │   ├── img
+        │   │   │   │   └── js
+        │   │   │   ├── fullcalendar
+        │   │   │   │   ├── demos
+        │   │   │   │   │   └── cupertino
+        │   │   │   │   │       └── images
+        │   │   │   │   ├── fullcalendar
+        │   │   │   │   └── jquery
+        │   │   │   ├── gritter
+        │   │   │   │   ├── css
+        │   │   │   │   ├── images
+        │   │   │   │   ├── images_original
+        │   │   │   │   └── js
+        │   │   │   ├── jcrop
+        │   │   │   │   ├── css
+        │   │   │   │   ├── demos
+        │   │   │   │   │   └── demo_files
+        │   │   │   │   └── js
+        │   │   │   ├── jquery-easy-pie-chart
+        │   │   │   │   ├── examples
+        │   │   │   │   └── img
+        │   │   │   ├── jquery-file-upload
+        │   │   │   │   ├── cors
+        │   │   │   │   ├── css
+        │   │   │   │   ├── img
+        │   │   │   │   ├── js
+        │   │   │   │   │   ├── cors
+        │   │   │   │   │   └── vendor
+        │   │   │   │   ├── server
+        │   │   │   │   │   ├── gae-go
+        │   │   │   │   │   │   ├── app
+        │   │   │   │   │   │   └── static
+        │   │   │   │   │   ├── gae-python
+        │   │   │   │   │   │   └── static
+        │   │   │   │   │   ├── node
+        │   │   │   │   │   │   ├── public
+        │   │   │   │   │   │   │   └── files
+        │   │   │   │   │   │   │       └── thumbnail
+        │   │   │   │   │   │   └── tmp
+        │   │   │   │   │   └── php
+        │   │   │   │   │       └── files
+        │   │   │   │   └── test
+        │   │   │   ├── jquery-knob
+        │   │   │   │   └── js
+        │   │   │   ├── jquery-multi-select
+        │   │   │   │   ├── css
+        │   │   │   │   ├── img
+        │   │   │   │   ├── js
+        │   │   │   │   └── test
+        │   │   │   │       ├── lib
+        │   │   │   │       │   └── jasmine-1.2.0
+        │   │   │   │       ├── spec
+        │   │   │   │       └── src
+        │   │   │   ├── jquery-tags-input
+        │   │   │   │   └── test
+        │   │   │   ├── jquery-ui
+        │   │   │   │   └── images
+        │   │   │   ├── morris.js-0.4.3
+        │   │   │   │   ├── examples
+        │   │   │   │   │   └── lib
+        │   │   │   │   ├── less
+        │   │   │   │   ├── lib
+        │   │   │   │   └── spec
+        │   │   │   │       ├── lib
+        │   │   │   │       │   ├── area
+        │   │   │   │       │   ├── bar
+        │   │   │   │       │   ├── donut
+        │   │   │   │       │   ├── grid
+        │   │   │   │       │   └── line
+        │   │   │   │       ├── support
+        │   │   │   │       └── vendor
+        │   │   │   ├── nestable
+        │   │   │   └── xchart
+        │   │   ├── css
+        │   │   ├── img
+        │   │   └── js
+        │   └── templates
+        │       ├── admin
+        │       │   ├── events
+        │       │   └── users
+        │       ├── auth
+        │       └── home
+        ├── instance
+        └── __pycache__
+
+355 directories
