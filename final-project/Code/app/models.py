@@ -19,7 +19,6 @@ class User(UserMixin, db.Model):
     first_name = db.Column(db.String(60), index=True)
     last_name = db.Column(db.String(60), index=True)
     password_hash = db.Column(db.String(128))
-    event_id = db.Column(db.Integer, db.ForeignKey('events.id'))
     is_admin = db.Column(db.Boolean, default=False)
 
     @property
@@ -50,28 +49,25 @@ class User(UserMixin, db.Model):
 def load_user(user_id):
     return User.query.get(int(user_id))
 
-class Event(db.Model):
+class Subscription(db.Model):
     """
-    Create a Event table
+    Create an User table
     """
 
-    __tablename__ = 'events'
+    # Ensures table will be named in plural and not in singular
+    # as is the name of the model
+    __tablename__ = 'subscriptions'
 
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(60), unique=True)
-    description = db.Column(db.String(200))
-    users = db.relationship('User', backref='event',
-                                lazy='dynamic')
-
-    def __repr__(self):
-        return '<Event: {}>'.format(self.name)
+    subscription_id = db.Column('subscription_id', db.Integer, primary_key=True)
+    username = db.Column('username', db.String(60))
+    event_id = db.Column('event_id', db.Integer)
 
 class Events(db.Model):
     """
     Create a Events table
     """
 
-    __tablename__ = 'table 5'
+    __tablename__ = 'events'
 
     id = db.Column('event_id', db.Integer, primary_key=True)
     usersID = db.Column('users_id', db.Integer)

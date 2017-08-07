@@ -1,11 +1,18 @@
 # views 2 change Event to Events
+from app import mail
 from flask import abort, flash, redirect, render_template, url_for
 from flask_login import current_user, login_required
+from flask_mail import Message, Mail
+from flask import current_app
+
 
 from . import admin
 from .forms import EventForm
 from .. import db
+#from .. import mail
 from ..models import *
+from config import ADMINS
+
 
 def check_admin():
     """
@@ -31,6 +38,37 @@ def list_events(page=1):
 
     return render_template('admin/events/events.html',
                            events=events, title="Events")
+
+@admin.route('/users', methods=['GET', 'POST'])
+@admin.route('/users/<int:page>', methods=['GET', 'POST'])
+@login_required
+def list_users(page=1):
+    """
+    List all users
+    """
+    check_admin()
+
+    POSTS_PER_PAGE = 20
+    users = User.query.paginate(page, POSTS_PER_PAGE, False)
+
+    return render_template('admin/users/users.html',
+                           users=users, title="Users")
+
+@admin.route('/users/delete/<int:id>', methods=['GET', 'POST'])
+@login_required
+def delete_user(id):
+    """
+    Delete a user from the database
+    """
+    check_admin()
+
+    user = User.query.get_or_404(id)
+    db.session.delete(user)
+    db.session.commit()
+    flash('You have successfully deleted the user.')
+
+    # redirect to the events page
+    return redirect(url_for('admin.list_users'))
 
 @admin.route('/events/add', methods=['GET', 'POST'])
 @login_required
@@ -112,4 +150,28 @@ def delete_event(id):
     # redirect to the events page
     return redirect(url_for('admin.list_events'))
 
-    return render_template(title="Delete Event")
+#@admin.route('/test-email/', methods=['GET', 'POST'])
+@admin.route('/test-email/')
+@login_required
+def test_email():
+    """
+    Email Test
+    """
+    check_admin()
+
+    events = Events.query.all()
+    """
+    POSTS_PER_PAGE = 20
+    events = Events.query.paginate(1, POSTS_PER_PAGE, False)
+    #msg = Message('test subject', sender=ADMINS[0], recipients=ADMINS[0])
+    """
+    msg = Message('Formatted Email Test',
+    sender=ADMINS[0],
+    recipients=ADMINS)
+
+    msg.body = 'Test Email: this message body'
+    #msg.html = '<b>HTML</b> body'
+    msg.html = render_template('admin/events/email-template.html',
+                           events=events, title="Events for the Month")
+    mail.send(msg)
+    return msg.html

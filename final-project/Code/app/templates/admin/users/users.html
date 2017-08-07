@@ -1,0 +1,54 @@
+ {% import "bootstrap/utils.html" as utils %} {% extends "base.html" %} {% block title %}users{% endblock %} {% block body
+%}
+<div class="content-section">
+  <div class="inner">
+    <br/> {{ utils.flashed_messages() }}
+    <br/>
+    <h1 style="text-align:center;">Users</h1>
+    {% if users %}
+    <hr class="intro-divider">
+    <div class="center">
+      <table class="table table-striped table-bordered">
+        <thead>
+          <tr>
+            <th width="25%"> Email </th>
+            <th width="25%"> Username </th>
+            <th width="25%"> First Name </th>
+            <th width="25%"> Last Name </th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for user in users.items %}
+          <tr>
+            <td> {{ user.email }} </td>
+            <td> {{ user.username }} </td>
+            <td> {{ user.first_name }} </td>
+            <td> {{ user.last_name }} </td>
+
+            <td>
+              <a href="{{ url_for('admin.delete_user', id=user.id) }}">
+                      <i class="fa fa-trash"></i> Delete 
+                    </a>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      <div class="buttonholder">
+        {% if users.has_prev %} <a href="{{ url_for('admin.list_users', page=users.prev_num) }}">&lt;&lt; Prev users</a>{%
+        else %}&lt;&lt; Prev users{% endif %} | {% if users.has_next %}<a href="{{ url_for('admin.list_users', page=users.next_num) }}">Next users &gt;&gt;</a>{%
+        else %}Next users &gt;&gt;{% endif %}
+        <div style="text-align: center">
+          {% else %}
+          <div style="text-align: center">
+            <h3> No users have been added. </h3>
+            <hr class="intro-divider"> {% endif %}
+          </div>
+        </div>
+        <br />
+        <br />
+        <br />
+      </div>
+    </div>
+  </div>
+  {% endblock %}

@@ -15,7 +15,6 @@
             <th width="40%"> Location </th>
             <th width="40%"> Start Time </th>
             <th width="40%"> End Time </th>
-            <th width="15%"> User Count </th>
             <th width="15%"> Edit </th>
             <th width="15%"> Delete </th>
           </tr>
@@ -28,9 +27,6 @@
             <td> {{ event.startTime }} </td>
             <td> {{ event.endTime }} </td>
 
-            <td>
-              {% if event.users %} {{ event.users.count() }} {% else %} 0 {% endif %}
-            </td>
             <td>
               <a href="{{ url_for('admin.edit_event', id=event.id) }}">
                       <i class="fa fa-pencil"></i> Edit 

@@ -11,25 +11,25 @@
             <table class="table table-striped table-bordered">
                 <thead>
                     <tr>
-                        <th width="15%"> Name </th>
-                        <th width="30%"> Location </th>
-                        <th width="20%"> Start Time </th>
-                        <th width="20%"> End Time </th>
-                        <th width="15%"> User Count </th>
+                        <th width="25%"> Name </th>
+                        <th width="25%"> Location </th>
+                        <th width="25%"> Start Time </th>
+                        <th width="25%"> End Time </th>
                     </tr>
                 </thead>
                 <tbody>
+                    
                     {% for event in events.items %}
                     <tr>
                         <td style="text-align:center;"> {{ event.name }} </td>
                         <td style="text-align:center;"> {{ event.description }} </td>
                         <td style="text-align:center;"> {{ event.startTime }} </td>
                         <td style="text-align:center;"> {{ event.endTime }} </td>
-                        <td style="text-align:center;">
-                            {% if event.users %} {{ event.users.count() }} {% else %} 0 {% endif %}
-                        </td>
                         <td> <a class="btn btn-large btn-info" href="{{ url_for('home.view_event', id=event.id) }}"> 
                                     <i class="icon-info-sign"></i> View</a> </a>
+                        </td>
+                        <td> <a class="btn btn-large btn-info" href="{{ url_for('home.attend_event', id=event.id) }}"> 
+                                    <i class="icon-info-sign"></i> Attend</a> </a>
                         </td>
                     </tr>
                     {% endfor %}
