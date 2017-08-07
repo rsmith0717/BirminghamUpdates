@@ -236,7 +236,7 @@ def get_tasks():
     latitude = args['latitude']
     longitude = args['longitude']
     radius = args['radius']
-    query = "SELECT * , ( '3959' * acos( cos(radians({0}) ) * cos( radians(latitude)) * cos(radians(longitude) - radians({1}) ) + sin( radians({0}) ) * sin(radians(latitude)))) as distance FROM `table 5` where ( '3959' * acos( cos(radians({0}) ) * cos( radians(latitude)) * cos(radians(longitude) - radians({1}) ) + sin( radians({0}) ) * sin(radians(latitude)))) < {2}".format(latitude,longitude,radius)
+    query = "SELECT * , ( '3959' * acos( cos(radians({0}) ) * cos( radians(latitude)) * cos(radians(longitude) - radians({1}) ) + sin( radians({0}) ) * sin(radians(latitude)))) as distance FROM `events` where ( '3959' * acos( cos(radians({0}) ) * cos( radians(latitude)) * cos(radians(longitude) - radians({1}) ) + sin( radians({0}) ) * sin(radians(latitude)))) < {2}".format(latitude,longitude,radius)
     #print(query)
     sql = text(query)
     res = db.engine.execute(sql)
