@@ -34,3 +34,10 @@ class LoginForm(FlaskForm):
     email = StringField('Email', validators=[DataRequired(), Email()])
     password = PasswordField('Password', validators=[DataRequired()])
     submit = SubmitField('Login')
+
+class ForgetPasswordForm(FlaskForm):
+    """
+    Form for users to forget his password
+    """
+    email = StringField('Email', validators=[DataRequired(), Email()])
+    submit = SubmitField('ForgetPassword')

@@ -1,8 +1,15 @@
+import random
+import string
 from flask import flash, redirect, render_template, url_for
 from flask_login import login_required, login_user, logout_user
+from sqlalchemy import text
+from config import ADMINS
+from flask_mail import Message
+from app import mail 
+from werkzeug.security import generate_password_hash, check_password_hash
 
 from . import auth
-from .forms import LoginForm, RegistrationForm
+from .forms import LoginForm, RegistrationForm, ForgetPasswordForm
 from .. import db
 from ..models import User
 
@@ -58,6 +65,81 @@ def login():
     return render_template('auth/login.html', form=form, title='Login')
 
 @auth.route('/logout')
+
+
+def send_email(subject, sender, recipients, text_body, html_body):
+    msg = Message(subject, sender=sender, recipients=recipients)
+    msg.body = text_body
+    msg.html = html_body
+    mail.send(msg)
+
+
+vowels = list('aeiou')
+
+def gen_word(min, max):
+    word = ''
+    syllables = min + int(random.random() * (max - min))
+    for i in range(0, syllables):
+        word += gen_syllable()
+    
+    return word.capitalize()
+
+
+def gen_syllable():
+    ran = random.random()
+    if ran < 0.333:
+        return word_part('v') + word_part('c')
+    if ran < 0.666:
+        return word_part('c') + word_part('v')
+    return word_part('c') + word_part('v') + word_part('c')
+
+
+def word_part(type):
+    if type is 'c':
+        return random.sample([ch for ch in list(string.ascii_lowercase) if ch not in vowels], 1)[0]
+    if type is 'v':
+        return random.sample(vowels, 1)[0]
+
+
+
+@auth.route('/forget_password', methods=['GET', 'POST'])
+def forget_password():
+    form = ForgetPasswordForm()
+    # load forget password template
+
+    if form.validate_on_submit():
+
+        random_password = gen_word(2,4)
+        password = generate_password_hash(random_password)
+        query = "UPDATE users SET password_hash = '{0}' where email = '{1}'".format(password,form.email.data)
+        #print(query)
+        sql = text(query)
+        res = db.engine.execute(sql)
+
+
+
+        msg = Message('Forget Password',
+        sender=ADMINS[0],
+        recipients=[form.email.data])
+
+        msg.body = 'Your new password is ' + random_password
+        #msg.html = '<b>HTML</b> body'
+        msg.html = ""
+        mail.send(msg)
+
+
+
+    return render_template('auth/forget_password.html', form=form, title='Forget Password')
+
+@auth.route('/logout')
+
+
+
+
+
+
+
+
 @login_required
 def logout():
     """
